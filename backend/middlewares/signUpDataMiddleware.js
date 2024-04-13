@@ -32,7 +32,9 @@ const signUpDataMiddleware = async (req, res, next) => {
   // console.log(validationErrors);
   // Check weather there are validation error or not
   if (!validationErrors.isEmpty()) {
-    return res.status(400).send(validationErrors.array()[0].msg);
+    return res.status(400).json({
+      error: validationErrors.array()[0].msg,
+    });
   } else {
     next();
   }

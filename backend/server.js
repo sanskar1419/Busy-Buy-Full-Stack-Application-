@@ -6,6 +6,7 @@ import { connectUsingMongoose } from "./config/connectToMongoDB.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import authRouter from "./routes/auth.route.js";
+import productRouter from "./routes/product.route.js";
 
 // Initializing the app
 const app = new express();
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/auth", authRouter);
+app.use("/api/product", productRouter);
 
 // Listening to app
 app.listen(PORT, () => {
