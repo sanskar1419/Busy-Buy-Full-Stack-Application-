@@ -1,7 +1,7 @@
 /* Importing Necessary file, module etc. */
 import express from "express";
 import AuthController from "../controllers/auth.controller.js";
-import signUpDataMiddleware from "../middleware/user.signUp.data.middleware.js";
+import signUpDataMiddleware from "../middlewares/signUpDataMiddleware.js";
 
 /* Using express.Router() to create a new router object */
 const authRouter = express.Router();

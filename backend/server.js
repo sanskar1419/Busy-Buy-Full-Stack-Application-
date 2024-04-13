@@ -2,10 +2,10 @@
 import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
-import { connectUsingMongoose } from "./config/connectToMongoDB";
+import { connectUsingMongoose } from "./config/connectToMongoDB.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import authRouter from "./routes/auth.route";
+import authRouter from "./routes/auth.route.js";
 
 // Initializing the app
 const app = new express();
