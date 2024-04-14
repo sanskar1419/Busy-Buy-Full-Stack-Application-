@@ -57,4 +57,41 @@ export default class CartController {
       });
     }
   }
+
+  async deleteProduct(req, res) {
+    try {
+      const { productId, userId } = req.body;
+      const user = await User.findById(userId).populate("cartItems");
+      if (!user) {
+        return res.status(400).json({
+          error: "User Doesn't Exist",
+        });
+      }
+
+      const productIndex = user.cartItems.findIndex(
+        (p) => p.product.toString() === productId
+      );
+
+      if (productIndex === -1) {
+        return res.status(400).json({
+          error: "Product Not Available In Cart",
+        });
+      }
+
+      user.cartItems.splice(productIndex, 1);
+      await CartItem.deleteOne({ product: productId, user: userId });
+
+      user.save();
+
+      res.status(200).json({
+        message: "Product Deleted Successfully",
+      });
+    } catch (err) {
+      /* If there are some error then printing the error and sending the internal server error */
+      console.log("Error in deleteProduct method of CartController class", err);
+      res.status(500).json({
+        error: "Internal Server Error",
+      });
+    }
+  }
 }
