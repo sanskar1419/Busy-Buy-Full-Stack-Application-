@@ -1,7 +1,9 @@
+/* Importing Necessary file, module etc. */
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 
+/* Function to generate the jwt token and setting it to res.cookie */
 const generateTokenAndSetCookie = (userId, res) => {
   const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
     expiresIn: "1d",
@@ -14,4 +16,5 @@ const generateTokenAndSetCookie = (userId, res) => {
   });
 };
 
+/* Exporting */
 export default generateTokenAndSetCookie;

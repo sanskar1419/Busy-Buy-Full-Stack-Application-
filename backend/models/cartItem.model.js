@@ -1,7 +1,7 @@
 // Importing necessary file, module and package , and creating instances of them
 import mongoose from "mongoose";
 
-// Defining user schema
+// Defining cartItemSchema
 const cartItemSchema = new mongoose.Schema(
   {
     user: {
@@ -24,5 +24,5 @@ const cartItemSchema = new mongoose.Schema(
 // Creating variable through which we are going to access db
 const CartItem = mongoose.model("CartItem", cartItemSchema);
 
-// Exporting User Model
+// Exporting CartItem Model
 export default CartItem;

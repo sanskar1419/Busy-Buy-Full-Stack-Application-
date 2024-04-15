@@ -1,11 +1,15 @@
+/* Importing necessary files, module etc. */
 import User from "../models/user.model.js";
 
+/* Defining UserController and its method */
 export default class UserController {
+  /* getUserData method */
   async getUserData(req, res) {
     try {
-      const { userId } = req.body;
-
-      const user = await User.findById(userId)
+      /* Destructuring id from req.user */
+      const { id } = req.user;
+      /* Finding the user based on id and populating it */
+      const user = await User.findById(id)
         .populate({
           path: "orders",
           populate: {
@@ -21,11 +25,15 @@ export default class UserController {
             path: "product",
           },
         });
+
+      /* If the user is not there sending the response User Doesn't Exist */
       if (!user) {
         return res.status(400).json({
           error: "User Doesn't Exist",
         });
       }
+
+      /* If Everything work fine sending the user data */
       return res.status(200).json({
         id: user._id,
         username: user.username,

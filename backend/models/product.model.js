@@ -1,7 +1,7 @@
 // Importing necessary file, module and package , and creating instances of them
 import mongoose from "mongoose";
 
-// Defining user schema
+// Defining productSchema
 const productSchema = new mongoose.Schema(
   {
     brand: {
@@ -34,5 +34,5 @@ const productSchema = new mongoose.Schema(
 // Creating variable through which we are going to access db
 const Product = mongoose.model("Product", productSchema);
 
-// Exporting User Model
+// Exporting Product Model
 export default Product;

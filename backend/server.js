@@ -20,6 +20,7 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
+/* Handle Request */
 app.use("/api/auth", authRouter);
 app.use("/api/product", productRouter);
 app.use("/api/user", jwtAuth, userRouter);

@@ -1,7 +1,7 @@
 // Importing necessary file, module and package , and creating instances of them
 import mongoose from "mongoose";
 
-// Defining user schema
+// Defining orderSchema
 const orderSchema = new mongoose.Schema(
   {
     user: {
@@ -23,5 +23,5 @@ const orderSchema = new mongoose.Schema(
 // Creating variable through which we are going to access db
 const Order = mongoose.model("Order", orderSchema);
 
-// Exporting User Model
+// Exporting Order Model
 export default Order;
