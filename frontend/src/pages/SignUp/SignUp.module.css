@@ -1,0 +1,102 @@
+/* Sign In Page Container */
+.container {
+  width: 99vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-top: 25px; */
+}
+
+/* Sign in form container */
+.signUpContainer {
+  width: 40%;
+  /* box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3), 0 2px 2px rgba(0, 0, 0, 0.2); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* border: 2px solid black; */
+}
+
+/* Form Heading */
+.headingContainer {
+  display: flex;
+  align-items: center;
+  /* animation: bounce 3s ease-in-out alternate 3;e */
+  justify-content: center;
+  margin-top: -30px;
+}
+
+.headingContainer h2 {
+  font-weight: 900;
+  color: #224957;
+  font-size: 3rem;
+}
+
+/* Form Container */
+.signUpContainer form {
+  width: 80%;
+  margin-top: -40px;
+}
+
+.signUpContainer form label {
+  margin-top: 10px;
+  color: rgb(5, 5, 62);
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.signUpContainer form h4 {
+  margin-top: 8px;
+}
+
+.formInput {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  margin-top: 5px;
+}
+
+.formInput input {
+  padding: 10px;
+  /* outline: blue; */
+  border-radius: 10px;
+  margin-top: 10px;
+  outline: none;
+  border: 3px solid rgb(5, 5, 62);
+  color: rgb(5, 5, 62);
+  /* font-size: 1.2rem; */
+  font-weight: 900;
+}
+
+.formInput input::placeholder {
+  color: rgb(5, 5, 62);
+  /* font-size: 1.2rem; */
+  font-weight: 900;
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  /* border: 2px solid black; */
+}
+
+.buttonContainer button {
+  padding: 13px 25px;
+  border-radius: 10px;
+  background-color: rgb(102, 102, 240);
+  color: white;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+  width: 100%;
+}
+
+.buttonContainer button:active {
+  color: black;
+  background-color: white;
+}

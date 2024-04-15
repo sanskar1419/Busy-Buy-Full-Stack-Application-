@@ -1,0 +1,94 @@
+// Importing necessary module, component etc.
+import styles from "./SignUp.module.css";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+// import { signUpUserAsync } from "../../redux/slice/userSlice";
+
+// Defining SignUp functional Component
+function SignUp() {
+  const dispatch = useDispatch();
+  // Using useState hook to store the value of username, password and confirmPassword
+  const [inputs, setInputs] = useState({
+    username: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // console.log(inputs);
+    // dispatch(signUpUserAsync(inputs));
+  };
+
+  // Returning the JSX content
+  return (
+    <div className={styles.container}>
+      <div className={styles.signUpContainer}>
+        <div className={styles.headingContainer}>
+          <h2>Sign Up Here</h2>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.formInput}>
+            <label>Username</label>
+            <input
+              type="text"
+              placeholder="Enter Your username"
+              value={inputs.username}
+              // Whenever the something type setting the input with there value
+              onChange={(e) =>
+                setInputs({ ...inputs, username: e.target.value })
+              }
+              required
+            />
+          </div>
+          <div className={styles.formInput}>
+            <label>Password</label>
+            <input
+              type="password"
+              placeholder="Enter Your Password"
+              value={inputs.password}
+              // Whenever the something type setting the input with there value
+              onChange={(e) =>
+                setInputs({ ...inputs, password: e.target.value })
+              }
+              required
+            />
+          </div>
+          <div className={styles.formInput}>
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              placeholder="Enter Your Confirm Password"
+              value={inputs.confirmPassword}
+              // Whenever the something type setting the input with there value
+              onChange={(e) =>
+                setInputs({ ...inputs, confirmPassword: e.target.value })
+              }
+              required
+            />
+          </div>
+          <Link to="/signUp">
+            <h4>Already Have a account ?</h4>
+          </Link>
+          <div className={styles.buttonContainer}>
+            <button type="submit">Sign Up</button>
+          </div>
+          {/*  <Link to="/signIn">
+            <h4>Already Have a account ?</h4>
+          </Link> */}
+          {/* <div className={styles.buttonContainer}>
+            {loading ? (
+              <PropagateLoader color="rgb(102, 102, 240)" />
+            ) : (
+              <button>Sign Up</button>
+            )}
+          </div> */}
+        </form>
+      </div>
+    </div>
+  );
+}
+
+// Exporting SignUp Component
+export default SignUp;
