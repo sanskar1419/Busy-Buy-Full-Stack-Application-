@@ -1,0 +1,10 @@
+/* Styling for home container */
+.homeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 75%;
+  /* border: 2px solid black; */
+  padding-top: 50px;
+}
