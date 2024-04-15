@@ -8,7 +8,20 @@ const initialState = {
 export const notificationSlice = createSlice({
   name: "notification",
   initialState,
-  reducers: {},
+  reducers: {
+    setMessage: (state, action) => {
+      state.message = action.payload;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
+    },
+    resetMessage: (state, action) => {
+      state.message = null;
+    },
+    resetError: (state, action) => {
+      state.error = null;
+    },
+  },
   extraReducers: {},
 });
 

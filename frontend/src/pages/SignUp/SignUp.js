@@ -3,7 +3,7 @@ import styles from "./SignUp.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-// import { signUpUserAsync } from "../../redux/slice/userSlice";
+import { authActions, signUpUserAsync } from "../../redux/slice/authSlice";
 
 // Defining SignUp functional Component
 function SignUp() {
@@ -17,8 +17,8 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(inputs);
-    // dispatch(signUpUserAsync(inputs));
+    dispatch(authActions.fetchStart());
+    dispatch(signUpUserAsync(inputs));
   };
 
   // Returning the JSX content

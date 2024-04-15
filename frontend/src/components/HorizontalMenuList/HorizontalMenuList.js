@@ -8,15 +8,20 @@ import logInImg from "../../images/access.png";
 import styles from "./HorizontalMenuList.module.css";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getAuthUser, logoutUserAsync } from "../../redux/slice/userSlice";
+import {
+  authActions,
+  getAuthUser,
+  logoutUserAsync,
+} from "../../redux/slice/authSlice";
 
 // Creating HorizontalMenuList functional component
 function HorizontalMenuList() {
-  //   const authUser = useSelector(getAuthUser);
+  const authUser = useSelector(getAuthUser);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    // dispatch(logoutUserAsync());
+    dispatch(authActions.fetchStart());
+    dispatch(logoutUserAsync());
   };
   // Returning the JSX Content
   return (

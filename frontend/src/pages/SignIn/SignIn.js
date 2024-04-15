@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./SignIn.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-// import { signInUserAsync } from "../../redux/slice/userSlice";
+import { authActions, signInUserAsync } from "../../redux/slice/authSlice";
 
 // Defining SignIn Function
 function SignIn() {
@@ -16,7 +16,8 @@ function SignIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(signInUserAsync(inputs));
+    dispatch(authActions.fetchStart());
+    dispatch(signInUserAsync(inputs));
   };
   // Returning the jsx
   return (

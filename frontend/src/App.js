@@ -9,7 +9,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getAuthUser } from "./redux/slice/userSlice";
+import { getAuthUser } from "./redux/slice/authSlice";
 // import Cart from "./pages/Cart/Cart";
 
 function App() {
