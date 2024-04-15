@@ -15,9 +15,9 @@ function HorizontalMenuList() {
   //   const authUser = useSelector(getAuthUser);
   const dispatch = useDispatch();
 
-  //   const handleLogout = () => {
-  //     dispatch(logoutUserAsync());
-  //   };
+  const handleLogout = () => {
+    // dispatch(logoutUserAsync());
+  };
   // Returning the JSX Content
   return (
     <>
