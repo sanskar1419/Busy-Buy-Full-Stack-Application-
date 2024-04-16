@@ -1,0 +1,23 @@
+.mainContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+.orderItemsContainer {
+  /* border: 2px solid black; */
+  width: 90%;
+  height: 78vh;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.orderItemsContainer h3 {
+  font-size: 1.4rem;
+}

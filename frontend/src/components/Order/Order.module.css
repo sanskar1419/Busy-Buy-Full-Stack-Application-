@@ -1,0 +1,84 @@
+.individualOrderContainer {
+  /* border: 2px solid black; */
+  margin-bottom: 25px;
+  width: 90%;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3), 0 2px 2px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px 10px 0 0;
+}
+
+.itemsAndTotalContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  font-weight: 500;
+}
+
+.orderDateContainer {
+  padding: 15px 0;
+  border-bottom: 1px dashed rgb(197, 191, 191);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.itemsContainer {
+  /* width: 90%; */
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 2px 2px rgba(0, 0, 0, 0.2);
+  /* border: 2px solid black; */
+  margin-bottom: 20px;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 0;
+  border-radius: 10px;
+}
+
+.imageContainer {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageContainer img {
+  max-width: 200px;
+  max-height: 150px;
+}
+
+.nameContainer {
+  width: 500px;
+  /* border: 2px solid black; */
+  word-wrap: break-word;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.totalOrderValueContainer {
+  /* border: 2px solid black; */
+  margin-bottom: 20px;
+  /* padding: 15px 0; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-top: 1px dashed rgb(197, 191, 191);
+}
+
+.totalValue {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 88%;
+}

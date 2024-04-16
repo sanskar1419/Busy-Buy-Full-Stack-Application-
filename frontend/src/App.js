@@ -11,6 +11,7 @@ import {
 import { useSelector } from "react-redux";
 import { getAuthUser } from "./redux/slice/authSlice";
 import Cart from "./pages/Cart/Cart";
+import Orders from "./pages/Orders/Orders";
 // import Cart from "./pages/Cart/Cart";
 
 function App() {
@@ -36,6 +37,10 @@ function App() {
         {
           path: "cart",
           element: authUser ? <Cart /> : <Navigate to={"/signIn"} />,
+        },
+        {
+          path: "order",
+          element: authUser ? <Orders /> : <Navigate to={"/signIn"} />,
         },
       ],
     },
