@@ -8,6 +8,7 @@ import {
   getAuthData,
   signInUserAsync,
 } from "../../redux/slice/authSlice";
+import SyncLoader from "react-spinners/SyncLoader";
 
 // Defining SignIn Function
 function SignIn() {
@@ -16,7 +17,7 @@ function SignIn() {
     password: "",
   });
   const dispatch = useDispatch();
-  const { error } = useSelector(getAuthData);
+  const { error, loading } = useSelector(getAuthData);
 
   useEffect(() => {
     if (error) {
@@ -72,7 +73,11 @@ function SignIn() {
               <h4>Don't Have an account ?</h4>
             </Link>
             <div className={styles.buttonContainer}>
-              <button>Sign In</button>
+              {loading ? (
+                <SyncLoader color="rgb(102, 102, 240)" />
+              ) : (
+                <button>Sign Up</button>
+              )}
             </div>
           </form>
         </div>

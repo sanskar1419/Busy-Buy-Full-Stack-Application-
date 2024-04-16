@@ -10,13 +10,16 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   authActions,
+  getAuthData,
   getAuthUser,
   logoutUserAsync,
 } from "../../redux/slice/authSlice";
+import MoonLoader from "react-spinners/MoonLoader";
 
 // Creating HorizontalMenuList functional component
 function HorizontalMenuList() {
   const authUser = useSelector(getAuthUser);
+  const { loading } = useSelector(getAuthData);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -65,8 +68,7 @@ function HorizontalMenuList() {
               onClick={handleLogout}
             >
               <img src={logoutImg} alt="Logout" />
-              <h4>Logout</h4>
-              {/* {loading ? <RingLoader color="#36d7b7" /> : <h4>Logout</h4>} */}
+              {loading ? <MoonLoader color="#36d7b7" /> : <h4>Logout</h4>}
             </div>
           </>
         ) : (

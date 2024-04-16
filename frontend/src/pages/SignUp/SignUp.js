@@ -8,11 +8,12 @@ import {
   getAuthData,
   signUpUserAsync,
 } from "../../redux/slice/authSlice";
+import SyncLoader from "react-spinners/SyncLoader";
 
 // Defining SignUp functional Component
 function SignUp() {
   const dispatch = useDispatch();
-  const { error } = useSelector(getAuthData);
+  const { error, loading } = useSelector(getAuthData);
   // Using useState hook to store the value of username, password and confirmPassword
   const [inputs, setInputs] = useState({
     username: "",
@@ -88,18 +89,12 @@ function SignUp() {
               <h4>Already Have a account ?</h4>
             </Link>
             <div className={styles.buttonContainer}>
-              <button type="submit">Sign Up</button>
+              {loading ? (
+                <SyncLoader color="rgb(102, 102, 240)" />
+              ) : (
+                <button>Sign Up</button>
+              )}
             </div>
-            {/*  <Link to="/signIn">
-            <h4>Already Have a account ?</h4>
-          </Link> */}
-            {/* <div className={styles.buttonContainer}>
-            {loading ? (
-              <PropagateLoader color="rgb(102, 102, 240)" />
-            ) : (
-              <button>Sign Up</button>
-            )}
-          </div> */}
           </form>
         </div>
       </div>
