@@ -50,6 +50,7 @@ export const userSlice = createSlice({
     builder.addCase(getUserDetailsAsync.fulfilled, (state, action) => {
       if (action.payload.error) {
         state.error = action.payload.error;
+        state.loading = false;
         return;
       }
       state.cart = [...action.payload.cartItems];

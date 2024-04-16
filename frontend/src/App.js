@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getAuthUser } from "./redux/slice/authSlice";
+import Cart from "./pages/Cart/Cart";
 // import Cart from "./pages/Cart/Cart";
 
 function App() {
@@ -32,10 +33,10 @@ function App() {
           path: "signUp",
           element: authUser ? <Navigate to="/" /> : <SignUp />,
         },
-        // {
-        //   path: "cart",
-        //   element: authUser ? <Cart /> : <Navigate to={"/signIn"} />,
-        // },
+        {
+          path: "cart",
+          element: authUser ? <Cart /> : <Navigate to={"/signIn"} />,
+        },
       ],
     },
   ]);

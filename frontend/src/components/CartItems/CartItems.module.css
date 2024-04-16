@@ -1,0 +1,13 @@
+.cartItemsContainer {
+  width: 100%;
+  height: 80%;
+  /* padding: 20px; */
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  flex-direction: column;
+  /* background-color: whitesmoke; */
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

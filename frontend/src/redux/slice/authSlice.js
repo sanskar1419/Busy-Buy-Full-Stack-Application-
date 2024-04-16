@@ -67,6 +67,7 @@ export const authSlice = createSlice({
       .addCase(signUpUserAsync.fulfilled, (state, action) => {
         if (action.payload.error) {
           state.error = action.payload.error;
+          state.loading = false;
           return;
         }
         state.authUser = action.payload;
@@ -76,6 +77,7 @@ export const authSlice = createSlice({
       .addCase(signInUserAsync.fulfilled, (state, action) => {
         if (action.payload.error) {
           state.error = action.payload.error;
+          state.loading = false;
           return;
         }
         state.authUser = action.payload;
@@ -85,6 +87,7 @@ export const authSlice = createSlice({
       .addCase(logoutUserAsync.fulfilled, (state, action) => {
         if (action.payload.error) {
           state.error = action.payload.error;
+          state.loading = false;
           return;
         }
         state.message = action.payload.message;

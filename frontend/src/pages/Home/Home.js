@@ -16,8 +16,6 @@ function Home() {
   const dispatch = useDispatch();
   const { message, authUser } = useSelector(getAuthData);
   const productMessage = useSelector(getError);
-  const cart = useSelector(getCart);
-  const orders = useSelector(getOrders);
 
   useEffect(() => {
     if (authUser) {
@@ -37,9 +35,6 @@ function Home() {
       }, 2000);
     }
   }, [message, productMessage]);
-
-  console.log("Orders : ", orders);
-  console.log("cart : ", cart);
 
   return (
     <>
