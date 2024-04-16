@@ -49,6 +49,18 @@ export const authSlice = createSlice({
     fetchStart: (state, action) => {
       state.loading = true;
     },
+    setMessage: (state, action) => {
+      state.message = action.payload;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
+    },
+    resetMessage: (state, action) => {
+      state.message = null;
+    },
+    resetError: (state, action) => {
+      state.error = null;
+    },
   },
   extraReducers: (builder) => {
     builder

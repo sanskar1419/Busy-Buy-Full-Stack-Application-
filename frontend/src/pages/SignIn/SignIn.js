@@ -1,9 +1,13 @@
 // Importing necessary module, component, hook etc.
 import { Link } from "react-router-dom";
 import styles from "./SignIn.module.css";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { authActions, signInUserAsync } from "../../redux/slice/authSlice";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  authActions,
+  getAuthData,
+  signInUserAsync,
+} from "../../redux/slice/authSlice";
 
 // Defining SignIn Function
 function SignIn() {
@@ -11,57 +15,69 @@ function SignIn() {
     username: "",
     password: "",
   });
-
   const dispatch = useDispatch();
+  const { error } = useSelector(getAuthData);
+
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        dispatch(authActions.resetError());
+      }, 2000);
+    }
+  }, [error]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(authActions.fetchStart());
     dispatch(signInUserAsync(inputs));
+    dispatch(authActions.setMessage("Signed In Successfully"));
   };
   // Returning the jsx
   return (
-    <div className={styles.container}>
-      <div className={styles.signInContainer}>
-        <div className={styles.headingContainer}>
-          <h2>Sign In Here</h2>
+    <>
+      {error && <div className="errorAlert">{error}</div>}
+      <div className={styles.container}>
+        <div className={styles.signInContainer}>
+          <div className={styles.headingContainer}>
+            <h2>Sign In Here</h2>
+          </div>
+          <form onSubmit={handleSubmit}>
+            <div className={styles.formInput}>
+              <label>Username</label>
+              <input
+                type="text"
+                placeholder="Enter Your username"
+                value={inputs.username}
+                // Whenever the something type setting the input with there value
+                onChange={(e) =>
+                  setInputs({ ...inputs, username: e.target.value })
+                }
+                required
+              />
+            </div>
+            <div className={styles.formInput}>
+              <label>Password</label>
+              <input
+                type="password"
+                placeholder="Enter Your Password"
+                value={inputs.password}
+                // Whenever the something type setting the input with there value
+                onChange={(e) =>
+                  setInputs({ ...inputs, password: e.target.value })
+                }
+                required
+              />
+            </div>
+            <Link to="/signUp">
+              <h4>Don't Have an account ?</h4>
+            </Link>
+            <div className={styles.buttonContainer}>
+              <button>Sign In</button>
+            </div>
+          </form>
         </div>
-        <form onSubmit={handleSubmit}>
-          <div className={styles.formInput}>
-            <label>Username</label>
-            <input
-              type="text"
-              placeholder="Enter Your username"
-              value={inputs.username}
-              // Whenever the something type setting the input with there value
-              onChange={(e) =>
-                setInputs({ ...inputs, username: e.target.value })
-              }
-              required
-            />
-          </div>
-          <div className={styles.formInput}>
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="Enter Your Password"
-              value={inputs.password}
-              // Whenever the something type setting the input with there value
-              onChange={(e) =>
-                setInputs({ ...inputs, password: e.target.value })
-              }
-              required
-            />
-          </div>
-          <Link to="/signUp">
-            <h4>Don't Have an account ?</h4>
-          </Link>
-          <div className={styles.buttonContainer}>
-            <button>Sign In</button>
-          </div>
-        </form>
       </div>
-    </div>
+    </>
   );
 }
 
