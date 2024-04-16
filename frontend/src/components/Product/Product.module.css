@@ -1,0 +1,145 @@
+.productContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  width: 310px;
+  /* border: 2px solid black; */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3), 0 2px 2px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  border-radius: 10px;
+  /* min-height: 700px; */
+  justify-content: center;
+}
+
+.imageContainer {
+  /* border: 2px solid black; */
+  width: 100%;
+  /* height: 0px; */
+  height: 450px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageContainer img {
+  width: 100%;
+  /* height: 100%; */
+  transition: all 1s ease-in-out;
+  /* aspect-ratio: 1/2; */
+  object-position: center;
+  object-fit: cover;
+}
+
+/* .imageContainer img:hover {
+      transform: scale(1.2);
+    } */
+
+.brandContainer {
+  color: rgb(201, 50, 50);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.productNameContainer {
+  font-size: 0.8rem;
+  text-align: center;
+  height: 50px;
+  /* border: 2px solid black; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: cursive;
+}
+.itemPriceContainer {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.mainPriceContainer {
+  font-size: 0.7rem;
+  color: rgb(201, 50, 50);
+}
+
+.mrp {
+  text-decoration: line-through;
+}
+
+.discount {
+  font-weight: 700;
+}
+
+.ratingsContainer {
+  /* border: 2px solid black; */
+  width: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 0.7rem;
+  margin-bottom: 10px;
+}
+
+.ratingValue {
+  /* background-color: rgb(27, 199, 27); */
+  padding: 5px;
+  border-radius: 3px;
+  animation: rating-color 4s ease-in-out alternate infinite;
+  color: white;
+}
+
+.ratingValue img {
+  width: 15px;
+}
+
+.btnAdd {
+  /* margin-top: 10px; */
+  padding: 8px 30px;
+  cursor: pointer;
+  font-weight: 700;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  animation: button-color 2s ease-in-out alternate infinite;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btnAdd img {
+  width: 30px;
+  color: white;
+  margin-right: 10px;
+}
+.loader {
+  margin-bottom: 15px;
+}
+
+@keyframes rating-color {
+  0% {
+    background-color: rgb(45, 160, 45);
+  }
+
+  50% {
+    background-color: rgb(8, 91, 8);
+  }
+
+  100% {
+    background-color: rgb(5, 43, 5);
+  }
+}
+
+@keyframes button-color {
+  0% {
+    background-color: rgb(87, 85, 211);
+  }
+
+  50% {
+    background-color: rgb(76, 74, 168);
+  }
+
+  100% {
+    background-color: rgb(75, 73, 193);
+  }
+}

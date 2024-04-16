@@ -4,25 +4,38 @@ import styles from "./Home.module.css";
 // import { getAuthUser, getSignInUserAsync } from "../../redux/slice/userSlice";
 import { useEffect } from "react";
 import { authActions, getAuthData } from "../../redux/slice/authSlice";
+import {
+  getAllProductsAsync,
+  getError,
+  getProducts,
+  productActions,
+} from "../../redux/slice/productSlice";
+import Products from "../../components/Products/Products";
 
 function Home() {
   const dispatch = useDispatch();
   const { message } = useSelector(getAuthData);
+  const productMessage = useSelector(getError);
+
   useEffect(() => {
     if (message) {
       setTimeout(() => {
         dispatch(authActions.resetMessage());
       }, 2000);
     }
-  }, [message]);
+    if (productMessage) {
+      setTimeout(() => {
+        dispatch(productActions.resetError());
+      }, 2000);
+    }
+  }, [message, productMessage]);
 
   return (
     <>
       {message && <div className="alert">{message}</div>}
+      {productMessage && <div className="errorAlert">{productMessage}</div>}
       <div className={styles.homeContainer}>
-        {/* If the state of loading the product from cloud firestore in process the it will show Gridloader otherwise Products component */}
-        {/* <Products /> */}
-        <h1>This is our home page.</h1>
+        <Products />
       </div>
     </>
   );
