@@ -7,7 +7,7 @@ export default class UserController {
   async getUserData(req, res) {
     try {
       /* Destructuring id from req.user */
-      const { id } = req.user;
+      const { id } = req.query;
       /* Finding the user based on id and populating it */
       const user = await User.findById(id)
         .populate({

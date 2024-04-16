@@ -23,7 +23,7 @@ app.use(cookieParser());
 /* Handle Request */
 app.use("/api/auth", authRouter);
 app.use("/api/product", productRouter);
-app.use("/api/user", jwtAuth, userRouter);
+app.use("/api/user", userRouter);
 
 // Listening to app
 app.listen(PORT, () => {

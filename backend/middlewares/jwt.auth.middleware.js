@@ -7,7 +7,7 @@ dotenv.config();
 const jwtAuth = async (req, res, next) => {
   // Read the token
   const token = req.cookies.jwt;
-  //   console.log("This is your token : ", token);
+  console.log("This is your token : ", token);
 
   // If no token, return error
   if (!token) {
