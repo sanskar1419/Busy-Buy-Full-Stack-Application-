@@ -1,0 +1,24 @@
+.filterMenuContainer {
+  position: fixed;
+  width: 60px;
+  height: 200px;
+  /* border: 2px solid black; */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3), 0 2px 2px rgba(0, 0, 0, 0.2);
+  top: 40%;
+  left: 0;
+  border-radius: 0 10px 10px 0;
+  background-color: rgb(200, 27, 27);
+  border-bottom: 5px solid black;
+  border-top: 5px solid black;
+  border-right: 5px solid black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.filterMenuContainer h3 {
+  writing-mode: tb-rl;
+}

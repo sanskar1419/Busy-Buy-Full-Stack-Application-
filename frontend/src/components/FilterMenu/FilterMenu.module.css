@@ -1,0 +1,52 @@
+.filterMenuContainer {
+  position: fixed;
+  width: 200px;
+  height: auto;
+  /* border: 2px solid black; */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3), 0 2px 2px rgba(0, 0, 0, 0.2);
+  top: 30%;
+  left: 0;
+  border-radius: 0 10px 10px 0;
+  background-color: #f0f0fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.heading {
+  font-weight: 700;
+  /* font-size: 1.1rem; */
+  margin-bottom: 10px;
+}
+
+.priceFilter {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.priceFilter label {
+  font-size: 0.8rem;
+}
+
+.categoryContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.categoryContainer span {
+  /* font-size: 0.9rem; */
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.inputElement {
+  font-size: 0.8rem;
+}
