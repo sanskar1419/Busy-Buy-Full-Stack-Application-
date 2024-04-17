@@ -49,7 +49,7 @@ function Home() {
         dispatch(userActions.resetError());
       }, 2000);
     }
-  }, [message, productMessage]);
+  }, [message, productMessage, userMessage, userError]);
 
   return (
     <>

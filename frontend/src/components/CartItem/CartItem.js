@@ -3,10 +3,28 @@ import styles from "./CartItem.module.css";
 import plusImg from "../../images/plus.png";
 import minusImg from "../../images/remove.png";
 import starImg from "../../images/star.png";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuthUser } from "../../redux/slice/authSlice";
+import { getCart, removeProductFromCart } from "../../redux/slice/userSlice";
 
 // Creating CartItem functional component
 function CartItem({ product, quantity }) {
-  // Destructuring removeFromCart, increaseQuantity, decreaseQuantity from useCart custom hook
+  const dispatch = useDispatch();
+  const authUser = useSelector(getAuthUser);
+  const cart = useSelector(getCart);
+  console.log(cart);
+
+  const removeProduct = () => {
+    const productIndex = cart.findIndex((p) => product._id === p.product._id);
+    console.log(productIndex);
+  };
+
+  const handleRemove = () => {
+    removeProduct();
+    dispatch(
+      removeProductFromCart({ productId: product._id, userId: authUser._id })
+    );
+  };
 
   // Returning the JSX Content
   return (
@@ -51,7 +69,7 @@ function CartItem({ product, quantity }) {
           <div>Ratings</div>
         </div>
         <div className={styles.removeItem}>
-          <button>Remove Item</button>
+          <button onClick={handleRemove}>Remove Item</button>
         </div>
       </div>
     </div>

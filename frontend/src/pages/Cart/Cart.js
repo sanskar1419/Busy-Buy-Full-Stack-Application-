@@ -9,7 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getCart,
   getUserDetailsAsync,
+  getUserError,
   getUserLoadingState,
+  getUserMessage,
   userActions,
 } from "../../redux/slice/userSlice";
 import { getAuthData } from "../../redux/slice/authSlice";
@@ -27,6 +29,21 @@ function Cart() {
   const { authUser } = useSelector(getAuthData);
   const cart = useSelector(getCart);
   const loading = useSelector(getUserLoadingState);
+  const userError = useSelector(getUserError);
+  const userMessage = useSelector(getUserMessage);
+
+  useEffect(() => {
+    if (userMessage) {
+      setTimeout(() => {
+        dispatch(userActions.resetMessage());
+      }, 2000);
+    }
+    if (userError) {
+      setTimeout(() => {
+        dispatch(userActions.resetError());
+      }, 2000);
+    }
+  }, [userMessage, userError]);
 
   useEffect(() => {
     if (authUser) {
@@ -57,66 +74,70 @@ function Cart() {
 
   // Returning JSX Content
   return (
-    <div className={styles.bodyContainer}>
-      {/* If loading state is true show the gridloader */}
-      {loading ? (
-        <div className={styles.loaderContainer}>
-          <GridLoader color="blue" />
-        </div>
-      ) : cart.length === 0 ? (
-        <NoItemInCart />
-      ) : (
-        <div className={styles.cartContainer}>
-          <div className={styles.cartItemsAndPriceContainer}>
-            <div className={styles.cartItemsAndOrderContainer}>
-              <CartItems />
-              <div className={styles.placeButtonContainer}>
-                <button>PLACE ORDER</button>
-                {/* {orderLoading ? (
+    <>
+      {userMessage && <div className="alert">{userMessage}</div>}
+      {userError && <div className="errorAlert">{userError}</div>}
+      <div className={styles.bodyContainer}>
+        {/* If loading state is true show the gridloader */}
+        {loading ? (
+          <div className={styles.loaderContainer}>
+            <GridLoader color="blue" />
+          </div>
+        ) : cart.length === 0 ? (
+          <NoItemInCart />
+        ) : (
+          <div className={styles.cartContainer}>
+            <div className={styles.cartItemsAndPriceContainer}>
+              <div className={styles.cartItemsAndOrderContainer}>
+                <CartItems />
+                <div className={styles.placeButtonContainer}>
+                  <button>PLACE ORDER</button>
+                  {/* {orderLoading ? (
                   <div className={styles.loaderContainer}>
                     <RingLoader color="blue" />
                   </div>
                 ) : (
                   <button>PLACE ORDER</button>
                 )} */}
+                </div>
               </div>
-            </div>
-            <div className={styles.priceBreakUpContainer}>
-              <div className={styles.priceDetailsHeader}>
-                <p>PRICE DETAILS</p>
-              </div>
-              <div className={styles.priceContainer}>
-                <p>Price ({priceBreakUp.totalItem} Items)</p>
-                <p>&#8377; {priceBreakUp.totalMRP}</p>
-              </div>
-              <div className={styles.priceContainer}>
-                <p>Discount</p>
-                <p className={styles.textGreen}>
-                  - &#8377; {priceBreakUp.totalDiscount}
-                </p>
-              </div>
-              <div className={styles.priceContainer}>
-                <p>Delivery Charges</p>
-                <p>
-                  <span className={styles.delivery}>&#8377;240</span>
-                  <span className={styles.textGreen}> Free</span>
-                </p>
-              </div>
-              <div className={styles.totalAmountContainer}>
-                <h4>Total Amount</h4>
-                <h4>&#8377; {priceBreakUp.totalPrice}</h4>
-              </div>
-              <div className={styles.priceContainer}>
-                <p className={styles.textGreen}>
-                  You will save ₹{priceBreakUp.totalDiscount + 240} on this
-                  order
-                </p>
+              <div className={styles.priceBreakUpContainer}>
+                <div className={styles.priceDetailsHeader}>
+                  <p>PRICE DETAILS</p>
+                </div>
+                <div className={styles.priceContainer}>
+                  <p>Price ({priceBreakUp.totalItem} Items)</p>
+                  <p>&#8377; {priceBreakUp.totalMRP}</p>
+                </div>
+                <div className={styles.priceContainer}>
+                  <p>Discount</p>
+                  <p className={styles.textGreen}>
+                    - &#8377; {priceBreakUp.totalDiscount}
+                  </p>
+                </div>
+                <div className={styles.priceContainer}>
+                  <p>Delivery Charges</p>
+                  <p>
+                    <span className={styles.delivery}>&#8377;240</span>
+                    <span className={styles.textGreen}> Free</span>
+                  </p>
+                </div>
+                <div className={styles.totalAmountContainer}>
+                  <h4>Total Amount</h4>
+                  <h4>&#8377; {priceBreakUp.totalPrice}</h4>
+                </div>
+                <div className={styles.priceContainer}>
+                  <p className={styles.textGreen}>
+                    You will save ₹{priceBreakUp.totalDiscount + 240} on this
+                    order
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 }
 

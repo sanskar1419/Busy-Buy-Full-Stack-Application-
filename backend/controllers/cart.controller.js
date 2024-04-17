@@ -70,10 +70,8 @@ export default class CartController {
   /* deleteProduct method */
   async deleteProduct(req, res) {
     try {
-      /* Destructuring id from req.user */
-      const { id } = req.user;
       /* Destructuring productId from req.body */
-      const { productId } = req.body;
+      const { productId, id } = req.body;
       /* Finding the user based on id and populating it */
       const user = await User.findById(id).populate("cartItems");
       /* If the user is not there sending the response User Doesn't Exist */
@@ -102,6 +100,7 @@ export default class CartController {
       /* Sending the Product Deleted Successfully response */
       res.status(200).json({
         message: "Product Deleted Successfully",
+        productIndex,
       });
     } catch (err) {
       /* If there are some error then printing the error and sending the internal server error */
