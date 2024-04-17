@@ -6,6 +6,13 @@ import bagImg from "../../images/shopping.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAuthUser } from "../../redux/slice/authSlice";
+import {
+  addProductToCartAsync,
+  getUserDetailsAsync,
+  getUserLoadingState,
+  userActions,
+} from "../../redux/slice/userSlice";
+import SyncLoader from "react-spinners/SyncLoader";
 
 // Creating Product functional component
 function Product({ product }) {
@@ -13,6 +20,7 @@ function Product({ product }) {
   const dispatch = useDispatch();
   const authUser = useSelector(getAuthUser);
   const navigate = useNavigate();
+  const loading = useSelector(getUserLoadingState);
 
   // If the user is not signed in redirecting to signIn page
   const handleAddToCart = () => {
@@ -20,7 +28,10 @@ function Product({ product }) {
       navigate("/signIn");
       return;
     }
-    // dispatch(addToCartAsync(product));
+    dispatch(userActions.fetchStart());
+    dispatch(
+      addProductToCartAsync({ productId: product._id, userId: authUser._id })
+    );
   };
 
   // Returning the JSX Content
@@ -53,11 +64,8 @@ function Product({ product }) {
         <div>Ratings</div>
       </div>
       <div className={styles.loader}>
-        <button className={styles.btnAdd} onClick={handleAddToCart}>
-          <img src={bagImg} alt="bag" /> ADD TO BAG
-        </button>
-        {/*  {loading ? (
-          <PropagateLoader
+        {loading ? (
+          <SyncLoader
             color="rgb(102, 102, 240)"
             style={{ marginBottom: "15px" }}
           />
@@ -65,7 +73,7 @@ function Product({ product }) {
           <button className={styles.btnAdd} onClick={handleAddToCart}>
             <img src={bagImg} alt="bag" /> ADD TO BAG
           </button>
-        )} */}
+        )}
       </div>
     </div>
   );

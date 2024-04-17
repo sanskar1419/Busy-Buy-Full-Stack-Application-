@@ -8,10 +8,8 @@ export default class CartController {
   /* addProductToCart method */
   async addProductToCart(req, res) {
     try {
-      /* Destructuring id from req.user */
-      const { id } = req.user;
       /* Destructuring productId from req.body */
-      const { productId } = req.body;
+      const { productId, id } = req.body;
       /* Finding the user based on id and populating it */
       const user = await User.findById(id).populate("cartItems");
       /* If the user is not there sending the response User Doesn't Exist */

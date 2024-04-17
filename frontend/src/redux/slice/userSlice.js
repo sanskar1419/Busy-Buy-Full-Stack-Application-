@@ -26,6 +26,21 @@ export const getUserDetailsAsync = createAsyncThunk(
   }
 );
 
+export const addProductToCartAsync = createAsyncThunk(
+  "user/addToCart",
+  async (payload, thunkAPI) => {
+    const response = await fetch("http://127.0.0.1:8000/api/user/cart/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        productId: payload.productId,
+        id: payload.userId,
+      }),
+    });
+    return await response.json();
+  }
+);
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
@@ -47,16 +62,26 @@ export const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getUserDetailsAsync.fulfilled, (state, action) => {
-      if (action.payload.error) {
-        state.error = action.payload.error;
+    builder
+      .addCase(getUserDetailsAsync.fulfilled, (state, action) => {
+        if (action.payload.error) {
+          state.error = action.payload.error;
+          state.loading = false;
+          return;
+        }
+        state.cart = [...action.payload.cartItems];
+        state.orders = [...action.payload.orders];
         state.loading = false;
-        return;
-      }
-      state.cart = [...action.payload.cartItems];
-      state.orders = [...action.payload.orders];
-      state.loading = false;
-    });
+      })
+      .addCase(addProductToCartAsync.fulfilled, (state, action) => {
+        if (action.payload.error) {
+          state.error = action.payload.error;
+          state.loading = false;
+          return;
+        }
+        state.message = action.payload.message;
+        state.loading = false;
+      });
   },
 });
 
