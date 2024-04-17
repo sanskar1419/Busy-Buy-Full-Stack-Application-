@@ -6,6 +6,7 @@ import starImg from "../../images/star.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuthUser } from "../../redux/slice/authSlice";
 import {
+  decreaseQuantityAsync,
   getCart,
   increaseQuantityAsync,
   removeProductFromCart,
@@ -30,6 +31,12 @@ function CartItem({ product, quantity }) {
     );
   };
 
+  const decreaseQuantity = () => {
+    dispatch(
+      decreaseQuantityAsync({ productId: product._id, userId: authUser._id })
+    );
+  };
+
   // Returning the JSX Content
   return (
     <div className={styles.itemContainer}>
@@ -38,7 +45,10 @@ function CartItem({ product, quantity }) {
           <img src={product.imageURL}></img>
         </div>
         <div className={styles.quantityContainer}>
-          <button>
+          <button
+            onClick={decreaseQuantity}
+            disabled={quantity === 1 ? true : false}
+          >
             <img src={minusImg} alt="minus" />
           </button>
           <span className={styles.quantity}>{quantity}</span>

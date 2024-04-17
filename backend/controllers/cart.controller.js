@@ -168,10 +168,8 @@ export default class CartController {
 
   async decreaseProductQuantity(req, res) {
     try {
-      /* Destructuring id from req.user */
-      const { id } = req.user;
       /* Destructuring productId from req.body */
-      const { productId } = req.body;
+      const { productId, id } = req.body;
       /* Finding the user based on id and populating it */
       const user = await User.findById(id).populate("cartItems");
       /* If the user is not there sending the response User Doesn't Exist */
@@ -208,6 +206,7 @@ export default class CartController {
         /* Returning response */
         return res.status(200).json({
           message: "Quantity Decreased by One",
+          productIndex,
         });
       } else {
         /* Returning response Can't decrease quantity below 1*/
