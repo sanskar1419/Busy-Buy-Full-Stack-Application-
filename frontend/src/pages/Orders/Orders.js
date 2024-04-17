@@ -20,7 +20,7 @@ function Orders() {
   const { authUser } = useSelector(getAuthData);
   const orders = useSelector(getOrders);
   const loading = useSelector(getUserLoadingState);
-  console.log(orders);
+  // console.log("Orders : ", orders);
 
   useEffect(() => {
     if (authUser) {

@@ -1,10 +1,21 @@
 // Importing Styles
+import { useEffect, useState } from "react";
 import styles from "./Order.module.css";
 
 // Creating Order functional component
 function Order({ order }) {
   // Destructuring order
   const { createdAt, cart } = order;
+  const [totalOrderValue, setTotalOrderValue] = useState(0);
+  console.log("Cart : ", cart);
+
+  useEffect(() => {
+    let result = 0;
+    cart.map((cartItem) => {
+      result = result + cartItem.quantity * cartItem.product.price;
+    });
+    setTotalOrderValue(result);
+  }, []);
 
   // Returning the JSX Content
   return (
@@ -32,7 +43,7 @@ function Order({ order }) {
         <div className={styles.totalOrderValueContainer}>
           <div className={styles.totalValue}>
             <h4>Total Ordered Value</h4>
-            <h4>&#8377; 150000</h4>
+            <h4>&#8377; {totalOrderValue}</h4>
           </div>
         </div>
       </div>

@@ -17,7 +17,7 @@ function CartItem({ product, quantity }) {
   const dispatch = useDispatch();
   const authUser = useSelector(getAuthUser);
   const cart = useSelector(getCart);
-  console.log(cart);
+  // console.log(cart);
 
   const handleRemove = () => {
     dispatch(

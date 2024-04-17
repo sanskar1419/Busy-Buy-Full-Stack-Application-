@@ -74,7 +74,7 @@ function Cart() {
   }, [cart]);
 
   const placeOrder = () => {
-    dispatch(userActions.fetchStart());
+    // dispatch(userActions.fetchStart());
     dispatch(orderItemAsync(authUser._id));
   };
 
@@ -97,7 +97,7 @@ function Cart() {
               <div className={styles.cartItemsAndOrderContainer}>
                 <CartItems />
                 <div className={styles.placeButtonContainer}>
-                  <button>PLACE ORDER</button>
+                  <button onClick={placeOrder}>PLACE ORDER</button>
                   {/* {orderLoading ? (
                   <div className={styles.loaderContainer}>
                     <RingLoader color="blue" />
