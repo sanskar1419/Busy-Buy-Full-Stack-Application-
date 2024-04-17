@@ -12,6 +12,7 @@ import {
   getUserError,
   getUserLoadingState,
   getUserMessage,
+  orderItemAsync,
   userActions,
 } from "../../redux/slice/userSlice";
 import { getAuthData } from "../../redux/slice/authSlice";
@@ -71,6 +72,11 @@ function Cart() {
       });
     }
   }, [cart]);
+
+  const placeOrder = () => {
+    dispatch(userActions.fetchStart());
+    dispatch(orderItemAsync(authUser._id));
+  };
 
   // Returning JSX Content
   return (

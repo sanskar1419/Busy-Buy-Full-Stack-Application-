@@ -7,7 +7,7 @@ export default class OrderController {
   async orderItem(req, res) {
     try {
       /* Destructuring id from req.user */
-      const { id } = req.user;
+      const { id } = req.body;
 
       /* Fetching user from User collection based on id */
       const user = await User.findById(id).populate("cartItems");

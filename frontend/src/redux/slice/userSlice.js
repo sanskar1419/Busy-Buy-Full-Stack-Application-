@@ -92,6 +92,20 @@ export const decreaseQuantityAsync = createAsyncThunk(
   }
 );
 
+export const orderItemAsync = createAsyncThunk(
+  "user/order",
+  async (payload) => {
+    const response = await fetch("http://127.0.0.1:8000/api/user/order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: payload,
+      }),
+    });
+    return await response.json();
+  }
+);
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
@@ -160,6 +174,16 @@ export const userSlice = createSlice({
           return;
         }
         state.cart[action.payload.productIndex].quantity--;
+        state.message = action.payload.message;
+        state.loading = false;
+      })
+      .addCase(orderItemAsync.fulfilled, (state, action) => {
+        if (action.payload.error) {
+          state.error = action.payload.error;
+          state.loading = false;
+          return;
+        }
+        state.cart = [];
         state.message = action.payload.message;
         state.loading = false;
       });
