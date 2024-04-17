@@ -5,7 +5,11 @@ import minusImg from "../../images/remove.png";
 import starImg from "../../images/star.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuthUser } from "../../redux/slice/authSlice";
-import { getCart, removeProductFromCart } from "../../redux/slice/userSlice";
+import {
+  getCart,
+  increaseQuantityAsync,
+  removeProductFromCart,
+} from "../../redux/slice/userSlice";
 
 // Creating CartItem functional component
 function CartItem({ product, quantity }) {
@@ -14,15 +18,15 @@ function CartItem({ product, quantity }) {
   const cart = useSelector(getCart);
   console.log(cart);
 
-  const removeProduct = () => {
-    const productIndex = cart.findIndex((p) => product._id === p.product._id);
-    console.log(productIndex);
-  };
-
   const handleRemove = () => {
-    removeProduct();
     dispatch(
       removeProductFromCart({ productId: product._id, userId: authUser._id })
+    );
+  };
+
+  const increaseQuantity = () => {
+    dispatch(
+      increaseQuantityAsync({ productId: product._id, userId: authUser._id })
     );
   };
 
@@ -38,7 +42,7 @@ function CartItem({ product, quantity }) {
             <img src={minusImg} alt="minus" />
           </button>
           <span className={styles.quantity}>{quantity}</span>
-          <button>
+          <button onClick={increaseQuantity}>
             <img src={plusImg} alt="plus" />
           </button>
         </div>

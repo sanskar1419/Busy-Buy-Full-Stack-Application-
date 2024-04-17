@@ -56,6 +56,24 @@ export const removeProductFromCart = createAsyncThunk(
   }
 );
 
+export const increaseQuantityAsync = createAsyncThunk(
+  "user/increase",
+  async (payload) => {
+    const response = await fetch(
+      "http://127.0.0.1:8000/api/user/cart/increaseQuantity",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          productId: payload.productId,
+          id: payload.userId,
+        }),
+      }
+    );
+    return await response.json();
+  }
+);
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
@@ -104,6 +122,16 @@ export const userSlice = createSlice({
           return;
         }
         state.cart.splice(action.payload.productIndex, 1);
+        state.message = action.payload.message;
+        state.loading = false;
+      })
+      .addCase(increaseQuantityAsync.fulfilled, (state, action) => {
+        if (action.payload.error) {
+          state.error = action.payload.error;
+          state.loading = false;
+          return;
+        }
+        state.cart[action.payload.productIndex].quantity++;
         state.message = action.payload.message;
         state.loading = false;
       });
