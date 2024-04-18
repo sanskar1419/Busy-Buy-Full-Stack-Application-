@@ -2,13 +2,11 @@
 import styles from "./Product.module.css";
 import starImg from "../../images/star.png";
 import bagImg from "../../images/shopping.png";
-
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAuthUser } from "../../redux/slice/authSlice";
 import {
   addProductToCartAsync,
-  getUserDetailsAsync,
   getUserLoadingState,
   userActions,
 } from "../../redux/slice/userSlice";
@@ -16,19 +14,25 @@ import SyncLoader from "react-spinners/SyncLoader";
 
 // Creating Product functional component
 function Product({ product }) {
-  // Destructuring values from use value and useCart custom hook
+  /* Defining Dispatcher */
   const dispatch = useDispatch();
+  /* Getting authUser state from the redux store using useSelector */
   const authUser = useSelector(getAuthUser);
+  /* Defining Navigator */
   const navigate = useNavigate();
+  /* Getting loading state from user redux store using useSelector */
   const loading = useSelector(getUserLoadingState);
 
-  // If the user is not signed in redirecting to signIn page
+  // Function to handle the addToCart click
   const handleAddToCart = () => {
+    /* If the user is not signed in redirecting to signIn page */
     if (!authUser) {
       navigate("/signIn");
       return;
     }
+    /* Dispatching fetchStart reducer to set the loading state to true */
     dispatch(userActions.fetchStart());
+    /* Dispatching addProductToCartAsync asyncThunk function to add the product to cart*/
     dispatch(
       addProductToCartAsync({ productId: product._id, userId: authUser._id })
     );

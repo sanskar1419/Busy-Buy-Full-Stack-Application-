@@ -1,8 +1,5 @@
+/* Importing Hooks, method, function etc. */
 import React from "react";
-import Navbar from "./components/Navbar/Navbar";
-import SignIn from "./pages/SignIn/SignIn";
-import SignUp from "./pages/SignUp/SignUp";
-import Home from "./pages/Home/Home";
 import {
   createBrowserRouter,
   Navigate,
@@ -10,13 +7,20 @@ import {
 } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getAuthUser } from "./redux/slice/authSlice";
+
+/* Importing Components */
+import Navbar from "./components/Navbar/Navbar";
+import SignIn from "./pages/SignIn/SignIn";
+import SignUp from "./pages/SignUp/SignUp";
+import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
 import Orders from "./pages/Orders/Orders";
-// import Cart from "./pages/Cart/Cart";
 
+/* Functional Component function */
 function App() {
+  /* Extracting value from Redux Store using useSelector function */
   const authUser = useSelector(getAuthUser);
-  // console.log(authUser);
+  /* React Router Configuration */
   const router = createBrowserRouter([
     {
       path: "/",
@@ -45,11 +49,15 @@ function App() {
       ],
     },
   ]);
+
+  /* Returning the JSX */
   return (
     <>
+      {/* Passing all data router objects to this component to render the app and enable the rest of the data APIs */}
       <RouterProvider router={router} />
     </>
   );
 }
 
+/* Exporting */
 export default App;

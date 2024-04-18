@@ -1,4 +1,4 @@
-// Importing Styles
+// Importing necessary module, hooks etc.
 import { useEffect, useState } from "react";
 import styles from "./Order.module.css";
 
@@ -6,9 +6,10 @@ import styles from "./Order.module.css";
 function Order({ order }) {
   // Destructuring order
   const { createdAt, cart } = order;
+  // Using useState hook to store the value of total order value
   const [totalOrderValue, setTotalOrderValue] = useState(0);
-  console.log("Cart : ", cart);
 
+  /* Using useEffect hook to calculate the totalOrderValue on mounting */
   useEffect(() => {
     let result = 0;
     cart.map((cartItem) => {

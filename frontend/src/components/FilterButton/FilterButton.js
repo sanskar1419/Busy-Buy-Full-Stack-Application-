@@ -1,12 +1,16 @@
-// Importing Styles
+// Importing necessary module, hooks etc.
 import { useDispatch } from "react-redux";
 import styles from "./FilterButton.module.css";
 import { filterActions } from "../../redux/slice/filterSlice";
 
 // Creating FilterButton functional component
 function FilterButton() {
+  /* Defining Dispatcher */
   const dispatch = useDispatch();
+
+  /* Function to handle click */
   const handleClick = () => {
+    /* Dispatching filterActions.setVisibility function to set the visibility to true */
     dispatch(filterActions.setVisibility());
   };
 

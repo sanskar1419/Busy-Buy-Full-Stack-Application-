@@ -18,14 +18,20 @@ import MoonLoader from "react-spinners/MoonLoader";
 
 // Creating HorizontalMenuList functional component
 function HorizontalMenuList() {
+  /* Getting authUser state from the redux store using useSelector */
   const authUser = useSelector(getAuthUser);
+  /* Destructuring loading state from the redux store using useSelector */
   const { loading } = useSelector(getAuthData);
+  /* Defining Dispatcher */
   const dispatch = useDispatch();
 
+  /* Function to logout the user */
   const handleLogout = () => {
     dispatch(authActions.fetchStart());
+    /* Dispatching logoutUserAsync asyncThunk function to make API call and logout user and remove its id from localStorage */
     dispatch(logoutUserAsync());
   };
+
   // Returning the JSX Content
   return (
     <>

@@ -1,5 +1,7 @@
+/* Importing necessary function and method */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+/* Defining the InitialState for userSlice */
 const initialState = {
   error: null,
   loading: false,
@@ -8,6 +10,7 @@ const initialState = {
   orders: [],
 };
 
+/* Creating a getUserDetailsAsync function that accepts a Redux action type string and a callback function that is return a promise. */
 export const getUserDetailsAsync = createAsyncThunk(
   "user/getUserDetails",
   async (payload, thunkAPI) => {
@@ -26,6 +29,7 @@ export const getUserDetailsAsync = createAsyncThunk(
   }
 );
 
+/* Creating a addProductToCartAsync function that accepts a Redux action type string and a callback function that is return a promise. */
 export const addProductToCartAsync = createAsyncThunk(
   "user/addToCart",
   async (payload, thunkAPI) => {
@@ -41,6 +45,7 @@ export const addProductToCartAsync = createAsyncThunk(
   }
 );
 
+/* Creating a removeProductFromCart function that accepts a Redux action type string and a callback function that is return a promise. */
 export const removeProductFromCart = createAsyncThunk(
   "user/removeProductPromCart",
   async (payload, thunkAPI) => {
@@ -56,6 +61,7 @@ export const removeProductFromCart = createAsyncThunk(
   }
 );
 
+/* Creating a increaseQuantityAsync function that accepts a Redux action type string and a callback function that is return a promise. */
 export const increaseQuantityAsync = createAsyncThunk(
   "user/increase",
   async (payload) => {
@@ -74,6 +80,7 @@ export const increaseQuantityAsync = createAsyncThunk(
   }
 );
 
+/* Creating a decreaseQuantityAsync function that accepts a Redux action type string and a callback function that is return a promise. */
 export const decreaseQuantityAsync = createAsyncThunk(
   "user/decrease",
   async (payload) => {
@@ -92,6 +99,7 @@ export const decreaseQuantityAsync = createAsyncThunk(
   }
 );
 
+/* Creating a orderItemAsync function that accepts a Redux action type string and a callback function that is return a promise. */
 export const orderItemAsync = createAsyncThunk(
   "user/order",
   async (payload) => {
@@ -106,9 +114,13 @@ export const orderItemAsync = createAsyncThunk(
   }
 );
 
+/* Creating userSlice function that accepts an initial state, an object of reducer functions, and a "slice name", and automatically generates action creators and action types that correspond to the reducers and state. */
 export const userSlice = createSlice({
+  /* Slice Name */
   name: "user",
+  /* Initial State */
   initialState,
+  /* Object of Reducers Function */
   reducers: {
     fetchStart: (state, action) => {
       state.loading = true;
@@ -126,7 +138,10 @@ export const userSlice = createSlice({
       state.error = null;
     },
   },
+  /* Object of extraReducer function */
+  /* A "builder callback" function used to add more reducers */
   extraReducers: (builder) => {
+    /* When the promise is fulfilled based on the case executing the function  */
     builder
       .addCase(getUserDetailsAsync.fulfilled, (state, action) => {
         if (action.payload.error) {
@@ -190,9 +205,12 @@ export const userSlice = createSlice({
   },
 });
 
+/* Creating and exporting userReducer using slice reducer method */
 export const userReducer = userSlice.reducer;
+/* Creating and exporting userActions using slice actions method */
 export const userActions = userSlice.actions;
 
+/* Selector function to get data */
 export const getCart = (state) => state.userReducer.cart;
 export const getUserError = (state) => state.userReducer.error;
 export const getUserMessage = (state) => state.userReducer.message;

@@ -2,12 +2,13 @@
 import { getCart } from "../../redux/slice/userSlice";
 import CartItem from "../CartItem/CartItem";
 import styles from "./CartItems.module.css";
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 // Creating CartItems functional component
 function CartItems() {
+  /* Getting cart from userReducer of Redux Store using useSelector*/
   const cart = useSelector(getCart);
+
   // Returning the JSX Content
   return (
     <div className={styles.cartItemsContainer}>
