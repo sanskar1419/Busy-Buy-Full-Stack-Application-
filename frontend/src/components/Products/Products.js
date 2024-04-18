@@ -114,7 +114,11 @@ function Products() {
             </div>
             <div className={styles.productsContainer}>
               {/* If filterProducts is empty then mapping over filterItems otherwise filter products */}
-              {filterProducts.length === 0
+              {filterItems.length === 0
+                ? products.map((product, index) => (
+                    <Product key={index} product={product} />
+                  ))
+                : filterProducts.length === 0
                 ? filterItems.map((product, index) => (
                     <Product key={index} product={product} />
                   ))
